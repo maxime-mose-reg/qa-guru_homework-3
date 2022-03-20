@@ -13,28 +13,31 @@ import static com.codeborne.selenide.Selenide.open;
 public class PracticeFormPage {
     private final CalendarComponent calendar = new CalendarComponent();
 
-    private final SelenideElement firstNameInput = $("#firstName");
-    private final SelenideElement lastNameInput = $("#lastName");
-    private final SelenideElement userEmailInput = $("#userEmail");
-    private final SelenideElement genderWrapperInput = $("#genterWrapper");
-    private final SelenideElement userNumberInput = $("#userNumber");
-    private final SelenideElement dateOfBirthInput = $("#dateOfBirthInput");
-    private final SelenideElement hobbiesWrapper = $("#hobbiesWrapper");
-    private final SelenideElement subjectsInput = $("#subjectsInput");
-    private final SelenideElement subjectsContainer = $("#subjectsContainer");
-    private final SelenideElement uploadPictureInput = $("#uploadPicture");
-    private final SelenideElement currentAddressInput = $("#currentAddress");
-    private final SelenideElement stateBlock = $("#state");
-    private final SelenideElement cityBlock = $("#city");
-    private final SelenideElement submitButton = $("#submit");
+    private final SelenideElement
+            pageHeader = $(byTagAndText("h5", "Student Registration Form")),
+            firstNameInput = $("#firstName"),
+            lastNameInput = $("#lastName"),
+            userEmailInput = $("#userEmail"),
+            genderWrapperInput = $("#genterWrapper"),
+            userNumberInput = $("#userNumber"),
+            dateOfBirthInput = $("#dateOfBirthInput"),
+            hobbiesWrapper = $("#hobbiesWrapper"),
+            subjectsInput = $("#subjectsInput"),
+            subjectsContainer = $("#subjectsContainer"),
+            uploadPictureInput = $("#uploadPicture"),
+            currentAddressInput = $("#currentAddress"),
+            stateBlock = $("#state"),
+            cityBlock = $("#city"),
+            submitButton = $("#submit"),
+            formHeader = $(byText("Thanks for submitting the form"));
 
     public PracticeFormPage openPage() {
         open("/automation-practice-form");
         return this;
     }
 
-    public PracticeFormPage checkPageHeader(String header) {
-        $(byTagAndText("h5", header)).should(appear);
+    public PracticeFormPage checkPageHeader() {
+        pageHeader.should(appear);
         return this;
     }
 
@@ -103,8 +106,8 @@ public class PracticeFormPage {
         return this;
     }
 
-    public PracticeFormPage checkFormHeader(String header) {
-        $(byText(header)).should(appear);
+    public PracticeFormPage checkFormHeader() {
+        formHeader.should(appear);
         return this;
     }
 

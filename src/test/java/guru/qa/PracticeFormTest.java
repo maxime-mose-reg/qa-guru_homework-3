@@ -15,7 +15,6 @@ public class PracticeFormTest {
 
     @Test
     void successTest() {
-        String pageHeader = "Student Registration Form";
         String firstName = "Ivan";
         String lastName = "Ivanov";
         String userEmail = "ivanov@company.org";
@@ -30,10 +29,9 @@ public class PracticeFormTest {
         String someAddress = "Some address";
         String state = "Rajasthan";
         String city = "Jaiselmer";
-        String formHeader = "Thanks for submitting the form";
 
         new PracticeFormPage().openPage()
-                .checkPageHeader(pageHeader)
+                .checkPageHeader()
                 .setFirstName(firstName)
                 .setLastName(lastName)
                 .setUserEmail(userEmail)
@@ -46,7 +44,8 @@ public class PracticeFormTest {
                 .setCurrentAddress(someAddress)
                 .setStateAndCity(state, city)
                 .submit()
-                .checkFormHeader(formHeader)
+
+                .checkFormHeader()
                 .checkFormParam("Student Name", firstName + " " + lastName)
                 .checkFormParam("Student Email", userEmail)
                 .checkFormParam("Gender", gender)
@@ -54,7 +53,7 @@ public class PracticeFormTest {
                 .checkFormParam("Date of Birth", String.format("%s %s,%s", day, month, year))
                 .checkFormParam("Subjects", subject)
                 .checkFormParam("Hobbies", hobby)
-                .checkFormParam("Picture", picture.substring(picture.lastIndexOf('/') + 1))
+                .checkFormParam("Picture", picture.replaceFirst(".*/", ""))
                 .checkFormParam("Address", someAddress)
                 .checkFormParam("State and City", state + " " + city);
     }
